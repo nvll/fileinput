@@ -29,7 +29,6 @@ func input(io_ch chan string) {
 		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {
 			io_ch <- scanner.Text()
-
 		}
 	}
 
