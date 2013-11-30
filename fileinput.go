@@ -18,25 +18,25 @@ func input(io_ch chan string) {
 		}
 	}
 
-    // Add stdin if we found no files in the arg list
-    if len(readers) == 0 {
-        readers = append(readers, os.Stdin)
-    }
+	// Add stdin if we found no files in the arg list
+	if len(readers) == 0 {
+		readers = append(readers, os.Stdin)
+	}
 
 	// And now read from all the input sources
 	for _, reader := range readers {
 		scanner := bufio.NewScanner(reader)
-        scanner.Split(bufio.ScanLines)
+		scanner.Split(bufio.ScanLines)
 		for scanner.Scan() {
 			io_ch <- scanner.Text()
 
 		}
 	}
 
-    close(io_ch)
+	close(io_ch)
 }
 
-func Input() (chan string) {
+func Input() chan string {
 	io_ch := make(chan string)
 	go input(io_ch)
 	return io_ch
